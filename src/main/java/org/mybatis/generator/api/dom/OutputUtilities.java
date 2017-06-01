@@ -63,7 +63,7 @@ public class OutputUtilities {
     /**
      * Utility method that indents the buffer by the default amount for XML (two
      * spaces per indent level).
-     * 
+     * 用来控制xml生成文件缩进的，修改为四个空格
      * @param sb
      *            a StringBuilder to append to
      * @param indentLevel
@@ -71,7 +71,7 @@ public class OutputUtilities {
      */
     public static void xmlIndent(StringBuilder sb, int indentLevel) {
         for (int i = 0; i < indentLevel; i++) {
-            sb.append("  "); //$NON-NLS-1$
+            sb.append("    "); //$NON-NLS-1$
         }
     }
 

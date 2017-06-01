@@ -106,6 +106,9 @@ public class SelectByPrimaryKeyElementGenerator extends
             sb.append(" = "); //$NON-NLS-1$
             sb.append(MyBatis3FormattingUtilities
                     .getParameterClause(introspectedColumn));
+            
+            // zhangliping
+            sb.append(" and del_flag = 0");
             answer.addElement(new TextElement(sb.toString()));
         }
 

@@ -396,7 +396,6 @@ public class DefaultCommentGenerator implements CommentGenerator {
         Parameter parm = method.getParameters().get(0);
         sb.setLength(0);
         sb.append(" * @param "); //$NON-NLS-1$
-        sb.append(parm.getName());
         sb.append(introspectedTable.getFullyQualifiedTable());
         sb.append('.');
         sb.append(introspectedColumn.getActualColumnName());

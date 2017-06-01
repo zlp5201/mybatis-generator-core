@@ -301,15 +301,15 @@ public class MyBatisGenerator {
         String source;
         try {
         	
-        	if (gjf.getCompilationUnit().getType().getShortNameWithoutTypeArguments().endsWith("Mapper")) {
-        		Interface ifs = (Interface) gjf.getCompilationUnit();
-        		ifs.addAnnotation("@MyBatisMapper");
-        		ifs.addAnnotation("@Repository");
-        		FullyQualifiedJavaType repositoryType = new FullyQualifiedJavaType("org.springframework.stereotype.Repository");
-        		FullyQualifiedJavaType myBatisType = new FullyQualifiedJavaType("com.xinguang.vly.core.annotation.MyBatisMapper");
-        		ifs.addImportedType(repositoryType);
-        		ifs.addImportedType(myBatisType);
-        	}
+//        	if (gjf.getCompilationUnit().getType().getShortNameWithoutTypeArguments().endsWith("Mapper")) {
+//        		Interface ifs = (Interface) gjf.getCompilationUnit();
+//        		ifs.addAnnotation("@MyBatisMapper");
+//        		ifs.addAnnotation("@Repository");
+//        		FullyQualifiedJavaType repositoryType = new FullyQualifiedJavaType("org.springframework.stereotype.Repository");
+//        		FullyQualifiedJavaType myBatisType = new FullyQualifiedJavaType("com.xinguang.vly.core.annotation.MyBatisMapper");
+//        		ifs.addImportedType(repositoryType);
+//        		ifs.addImportedType(myBatisType);
+//        	}
         	
         	
             File directory = shellCallback.getDirectory(gjf
