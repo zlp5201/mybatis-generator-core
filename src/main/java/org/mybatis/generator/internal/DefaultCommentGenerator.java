@@ -152,7 +152,7 @@ public class DefaultCommentGenerator implements CommentGenerator {
             boolean markAsDoNotDelete) {
         javaElement.addJavaDocLine(" *"); //$NON-NLS-1$
         StringBuilder sb = new StringBuilder();
-        sb.append(MergeConstants.NEW_ELEMENT_TAG);
+        sb.append(" * " + MergeConstants.NEW_ELEMENT_TAG);
         if (markAsDoNotDelete) {
             sb.append(" do_not_delete_during_merge"); //$NON-NLS-1$
         }
@@ -330,6 +330,15 @@ public class DefaultCommentGenerator implements CommentGenerator {
             return;
         }
 
+        StringBuilder sb = new StringBuilder();
+        sb.append(" * " + MergeConstants.NEW_ELEMENT_TAG);
+        sb.append(" do_not_delete_during_merge"); //$NON-NLS-1$
+        String s = getDateString();
+        if (s != null) {
+            sb.append(' ');
+            sb.append(s);
+        }
+        
     	/**
     	 * 功能描述: <br>
     	 * 〈功能详细描述〉
@@ -342,6 +351,7 @@ public class DefaultCommentGenerator implements CommentGenerator {
         method.addJavaDocLine(" * 功能描述:"); //$NON-NLS-1$
         method.addJavaDocLine(" * 〈功能详细描述〉"); //$NON-NLS-1$
         method.addJavaDocLine(" *");
+        method.addJavaDocLine(sb.toString());
         method.addJavaDocLine(" * @param");
         method.addJavaDocLine(" * @see [相关类/方法](可选)");
         method.addJavaDocLine(" * @since [产品/模块版本](可选)");

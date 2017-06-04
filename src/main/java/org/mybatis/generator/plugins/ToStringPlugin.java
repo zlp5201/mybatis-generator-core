@@ -79,10 +79,13 @@ public class ToStringPlugin extends PluginAdapter {
         method.addBodyLine("StringBuilder sb = new StringBuilder();"); //$NON-NLS-1$
         method.addBodyLine("sb.append(getClass().getSimpleName());"); //$NON-NLS-1$
         method.addBodyLine("sb.append(\" [\");"); //$NON-NLS-1$
-        method.addBodyLine("sb.append(\"Hash = \").append(hashCode());"); //$NON-NLS-1$
         StringBuilder sb = new StringBuilder();
         for (Field field : topLevelClass.getFields()) {
             String property = field.getName();
+            if ("serialVersionUID".equals(property)) {
+                continue;
+            }
+            
             sb.setLength(0);
             sb.append("sb.append(\"").append(", ").append(property) //$NON-NLS-1$ //$NON-NLS-2$
                     .append("=\")").append(".append(").append(property) //$NON-NLS-1$ //$NON-NLS-2$

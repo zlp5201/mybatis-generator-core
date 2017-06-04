@@ -17,8 +17,10 @@ import ${packageName}.mapper.${ClassName}Mapper;
 @Service("${className}Biz")
 public class ${ClassName}BizImpl implements ${ClassName}Biz {
 
-	@Autowired
-	private ${ClassName}Mapper ${className}Mapper;
+    protected SystemTraceLog logger = SystemTraceLogFactory.getSystemLogTrace(this.getClass());
+    
+    @Autowired
+    private ${ClassName}Mapper ${className}Mapper;
 
 
      /**
@@ -28,9 +30,9 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-	public int deleteByPrimaryKey(String id) {
-		return ${className}Mapper.deleteByPrimaryKey(id);
-	}
+    public int deleteByPrimaryKey(String id) {
+        return ${className}Mapper.deleteByPrimaryKey(id);
+    }
     
 
      /**
@@ -40,9 +42,9 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-	@Override
+    @Override
     public int insertSelective(${ClassName} record) {
-    	return ${className}Mapper.insertSelective(record);
+        return ${className}Mapper.insertSelective(record);
     }
 
 
@@ -53,9 +55,9 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-	@Override
+    @Override
     public ${ClassName} selectByPrimaryKey(String id) {
-    	return ${className}Mapper.selectByPrimaryKey(id);
+        return ${className}Mapper.selectByPrimaryKey(id);
     }
 
 
@@ -66,8 +68,8 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-	@Override
+    @Override
     public int updateByPrimaryKeySelective(${ClassName} record) {
-    	return ${className}Mapper.updateByPrimaryKeySelective(record);
+        return ${className}Mapper.updateByPrimaryKeySelective(record);
     }
 }
