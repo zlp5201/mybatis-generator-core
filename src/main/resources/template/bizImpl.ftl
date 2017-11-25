@@ -5,9 +5,13 @@ package ${packageName}.biz.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.xinguang.vly.order.dto.CollectionInput;
 import ${packageName}.biz.${ClassName}Biz;
 import ${packageName}.model.${ClassName};
 import ${packageName}.mapper.${ClassName}Mapper;
+import com.xinguang.vly.core.log.SystemTraceLog;
+import com.xinguang.vly.core.log.SystemTraceLogFactory;
 
 /**
  * ${functionName}BizImpl
@@ -30,7 +34,7 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    public int deleteByPrimaryKey(String id) {
+    public int delete${ClassName}ById(String id) {
         return ${className}Mapper.deleteByPrimaryKey(id);
     }
     
@@ -43,7 +47,7 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public int insertSelective(${ClassName} record) {
+    public int add${ClassName}(${ClassName} record) {
         return ${className}Mapper.insertSelective(record);
     }
 
@@ -56,7 +60,7 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public ${ClassName} selectByPrimaryKey(String id) {
+    public ${ClassName} query${ClassName}ById(String id) {
         return ${className}Mapper.selectByPrimaryKey(id);
     }
 
@@ -69,7 +73,36 @@ public class ${ClassName}BizImpl implements ${ClassName}Biz {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public int updateByPrimaryKeySelective(${ClassName} record) {
+    public int modify${ClassName}ById(${ClassName} record) {
         return ${className}Mapper.updateByPrimaryKeySelective(record);
+    }
+    
+    /**
+     * 功能描述: 订单关闭
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    @Override
+    @Transactional
+    public Boolean close(OrderPaymentInfo record, String closeReason) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    /**
+     * 功能描述: 收款
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    @Override
+    @Transactional
+    public Boolean collection(CollectionInput record) throws Exception{
+        // TODO Auto-generated method stub
+        return null;
     }
 }

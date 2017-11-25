@@ -92,9 +92,7 @@ public class SerializablePlugin extends PluginAdapter {
         }
         
         if (!suppressJavaInterface) {
-            topLevelClass.addImportedType(serializable);
-            topLevelClass.addSuperInterface(serializable);
-
+            
             Field field = new Field();
             field.setFinal(true);
             field.setInitializationString("1L"); //$NON-NLS-1$
@@ -103,8 +101,12 @@ public class SerializablePlugin extends PluginAdapter {
             field.setType(new FullyQualifiedJavaType("long")); //$NON-NLS-1$
             field.setVisibility(JavaVisibility.PRIVATE);
             context.getCommentGenerator().addFieldComment(field, introspectedTable);
-
             topLevelClass.addField(field);
+            
+            topLevelClass.addImportedType(serializable);
+            topLevelClass.addSuperInterface(serializable);
+
+            
         }
     }
 }

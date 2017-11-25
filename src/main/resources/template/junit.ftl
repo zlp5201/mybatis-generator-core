@@ -29,16 +29,16 @@ public class ${ClassName}ServiceTest extends TestBase {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    @Test
-    public void testDeleteByPrimaryKey() {
+    //@Test
+    public void testDelete${ClassName}ByById() {
 
         ${ClassName} record = new ${ClassName}();
         // TODO Auto-generated method stub
         record.setId("uuid");
 
-        Result<Boolean> result = ${className}Service.deleteByPrimaryKey(record);
+        Result<Boolean> result = ${className}Service.delete${ClassName}ByById(record);
         if (result != null && result.isSuccess()) {
-           Assert.assertSame(result.getData(), true);
+           Assert.assertNotNull(result.getData());
        }
     }
     
@@ -50,16 +50,16 @@ public class ${ClassName}ServiceTest extends TestBase {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    @Test
-    public void testInsertSelective() {
+    //@Test
+    public void testAdd${ClassName}() {
 
         ${ClassName} record = new ${ClassName}();
         // TODO Auto-generated method stub
         record.setId("uuid");
 
-        Result<Boolean> result = ${className}Service.insertSelective(record);
+        Result<Boolean> result = ${className}Service.add${ClassName}(record);
         if (result != null && result.isSuccess()) {
-           Assert.assertSame(result.getData(), true);
+           Assert.assertNotNull(result.getData());
        }
     }
     
@@ -71,14 +71,14 @@ public class ${ClassName}ServiceTest extends TestBase {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    @Test
-    public void testSelectByPrimaryKey() {
+    //@Test
+    public void testQuery${ClassName}ById() {
 
         ${ClassName} record = new ${ClassName}();
         // TODO Auto-generated method stub
         record.setId("uuid");
 
-        Result<${ClassName}> result = ${className}Service.selectByPrimaryKey(record);
+        Result<${ClassName}> result = ${className}Service.query${ClassName}ById(record);
         if (result != null && result.isSuccess()) {
            Assert.assertNotNull(result.getData());
        }
@@ -92,16 +92,16 @@ public class ${ClassName}ServiceTest extends TestBase {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    @Test
-    public void testUpdateByPrimaryKeySelective() {
+    //@Test
+    public void testModify${ClassName}ById() {
 
         ${ClassName} record = new ${ClassName}();
         // TODO Auto-generated method stub
         record.setId("uuid");
 
-        Result<Boolean> result = ${className}Service.updateByPrimaryKeySelective(record);
+        Result<Boolean> result = ${className}Service.modify${ClassName}ById(record);
         if (result != null && result.isSuccess()) {
-           Assert.assertSame(result.getData(), true);
+           Assert.assertNotNull(result.getData());
        }
     }
 }

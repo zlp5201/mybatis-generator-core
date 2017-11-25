@@ -46,16 +46,13 @@ public class Generate {
         
         // ========== ↓↓↓↓↓↓ 执行前请修改参数，谨慎执行。↓↓↓↓↓↓ ==================== 
         String packageName = "com.xinguang.vly.order";
-        String sysName = "协议模板服务";
-        String moduleName = "协议模板模块";            // 模块名，例：sys
+        String sysName = "会员一键导入";
+        String moduleName = "CustomerData";            // 模块名，例：sys
         String subModuleName = "";            // 子模块名（可选） 
-        String className = "ContractTemplete";            // 类名，例：user
+        String className = "CustomerData";            // 类名，例：user
         String classAuthor = "zhanglp";        // 类作者，例：Hzmux
-        String functionName = "协议模板服务";            // 功能名，例：用户
+        String functionName = "会员一键导入";            // 功能名，例：用户
         // ========== ↑↑↑↑↑↑ 执行前请修改参数，谨慎执行。↑↑↑↑↑↑ ====================
-        
-        
-        
         
         
         
@@ -71,9 +68,8 @@ public class Generate {
         // 是否启用生成工具
         //Boolean isEnable = false;
         Boolean isEnable = true;
-        
 
-        
+
         if (!isEnable){
             logger.error("请启用代码生成工具，设置参数：isEnable = true");
             return;

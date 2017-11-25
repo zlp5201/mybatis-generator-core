@@ -4,6 +4,7 @@
 package ${packageName}.api;
 
 import com.xinguang.vly.core.base.Result;
+import com.xinguang.vly.order.dto.CollectionInput;
 import ${packageName}.model.${ClassName};
 
 /**
@@ -20,7 +21,7 @@ public interface ${ClassName}Service {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Result<Boolean> deleteByPrimaryKey(${ClassName} record);
+    Result<Boolean> delete${ClassName}ById(${ClassName} record);
 
 
      /**
@@ -30,7 +31,7 @@ public interface ${ClassName}Service {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Result<Boolean> insertSelective(${ClassName} record);
+    Result<Boolean> add${ClassName}(${ClassName} record);
 
     
      /**
@@ -40,7 +41,7 @@ public interface ${ClassName}Service {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Result<${ClassName}> selectByPrimaryKey(${ClassName} record);
+    Result<${ClassName}> query${ClassName}ById(${ClassName} record);
 
 
      /**
@@ -50,5 +51,35 @@ public interface ${ClassName}Service {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Result<Boolean> updateByPrimaryKeySelective(${ClassName} record);
+    Result<Boolean> modify${ClassName}ById(${ClassName} record);
+    
+    
+    /**
+     * 功能描述: 订单关闭
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    Result<Boolean> close(${ClassName} record, String closeReason);
+    
+       
+   /**
+   * 功能描述:通过主键id查询订单详情
+   *
+   * @param orderInfo 支持id和orderNo
+   * @see [相关类/方法](可选)
+   * @since [产品/模块版本](可选)
+   */
+   Result<OrderBookingDetailInfoOutputDto> getDetailInfo(${ClassName} record);
+   
+   
+   /**
+     * 功能描述: 收款
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    Result<Boolean> collection(CollectionInput record);
 }
