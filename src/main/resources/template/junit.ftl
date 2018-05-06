@@ -30,13 +30,13 @@ public class ${ClassName}ServiceTest extends TestBase {
      * @since [产品/模块版本](可选)
      */
     //@Test
-    public void testDelete${ClassName}ByById() {
+    public void testDelete${ClassName}ById() {
 
         ${ClassName} record = new ${ClassName}();
         // TODO Auto-generated method stub
         record.setId("uuid");
 
-        Result<Boolean> result = ${className}Service.delete${ClassName}ByById(record);
+        Result<Boolean> result = ${className}Service.delete${ClassName}ById(record);
         if (result != null && result.isSuccess()) {
            Assert.assertNotNull(result.getData());
        }

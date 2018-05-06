@@ -176,34 +176,4 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
             return Result.fail("10005", "${ClassName}关闭失败");
         }
     }
-
-
-    /**
-     * 功能描述: 收款
-     *
-     * @param record 表对应实体类
-     * @see [相关类/方法](可选)
-     * @since [产品/模块版本](可选)
-     */
-    @Override
-    public Result<Boolean> collection(CollectionInput record) {
-        try 
-        {
-            logger.debugRpc(moduleName,"close", "入参{}", JsonUtil.toJson(record));
-            boolean isSucess = ${className}Biz.collection(record);
-            if (isSucess) 
-            {
-                return Result.success();
-            }
-            return Result.fail("10006", "${ClassName}收款失败");
-        } catch (BizException e) {
-            logger.errorRpc(moduleName, "collection", "${ClassName}收款失败", e);
-            return Result.failArgs(e.getCode(), e.getMessage());
-        }
-        catch (Exception e) 
-        {
-            logger.errorRpc(moduleName, "close", "${ClassName}收款失败", e);
-            return Result.fail("10006", "${ClassName}收款失败");
-        }
-    }
 }

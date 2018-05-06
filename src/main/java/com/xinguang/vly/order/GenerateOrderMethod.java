@@ -15,6 +15,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.Modifier;
+import javassist.bytecode.CodeAttribute;
+import javassist.bytecode.LocalVariableAttribute;
+import javassist.bytecode.MethodInfo;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +37,9 @@ import freemarker.template.Template;
 /**
  * 代码生成器
  */
-public class Generate {
+public class GenerateOrderMethod {
     
-    private static Logger logger = LoggerFactory.getLogger(Generate.class);
+    private static Logger logger = LoggerFactory.getLogger(GenerateOrderMethod.class);
 
     public static void main(String[] args) throws Exception {
 
@@ -56,7 +64,13 @@ public class Generate {
         
         
         
-        URL url = Generate.class.getResource("/");
+        
+        
+        
+        
+        
+        
+        URL url = GenerateOrderMethod.class.getResource("/");
         String basePath = url.getPath();
         String webProjectPathstr = basePath;
         
@@ -135,71 +149,91 @@ public class Generate {
         model.put("permissionPrefix", model.get("moduleName")+(StringUtils.isNotBlank(subModuleName)
                 ?":"+StringUtils.lowerCase(subModuleName):"")+":"+model.get("className"));
 
-        // 生成 Entity
-        Template template = cfg.getTemplate("entity.ftl");
         
         
-        String content = FreeMarkers.renderTemplate(template, model);
-        String filePath = outputPath + separator + model.get("ClassName")+".java";
-//        
-        // 生成 biz
-        template = cfg.getTemplate("biz.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"Biz.java";
-        writeFile(content, filePath);
-        logger.info("biz: {}", filePath);
-        
-        // 生成 bizImpl
-        template = cfg.getTemplate("bizImpl.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"BizImpl.java";
-        writeFile(content, filePath);
-        logger.info("bizImpl: {}", filePath);
         
         
-        // 生成 service
-        template = cfg.getTemplate("service.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"Service.java";
-        writeFile(content, filePath);
-        logger.info("biz: {}", filePath);
+        String returnType = "";
+        String methodName = "";
+        StringBuilder paramStr = new StringBuilder();
+        StringBuilder commentBuild = new StringBuilder();
+        String comment = commentBuild.append("/**")
+                .append("\n\t")
+                .append("* 功能描述: 通过主键删除")
+                .append("\n\t")
+                .append("*")
+                .append("\n\t")
+                .append("* @param record 主键id包含的实体类")
+                .append("\n\t")
+                .append("* @see [相关类/方法](可选)")
+                .append("\n\t")
+                .append("* @since [产品/模块版本](可选)")
+                .append("\n\t")
+                .append("*/").toString();
+//        String 
         
         
-        // 生成 serviceImpl
-        template = cfg.getTemplate("serviceImpl.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"ServiceImpl.java";
-        writeFile(content, filePath);
-        logger.info("bizImpl: {}", filePath);
         
-        // 生成 junit
-        template = cfg.getTemplate("junit.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"ServiceTest.java";
-        writeFile(content, filePath);
-        logger.info("junit: {}", filePath);
+//        Method[] method = Demo.class.getDeclaredMethods();
+        
+        ClassPool pool = ClassPool.getDefault();
+        CtClass cc = pool.get(Demo.class.getName());
+        CtMethod[] method = cc.getDeclaredMethods();
+        
+//        CtMethod cm = cc.getDeclaredMethod("getInfoById");
         
         
-        // 生成 Controller
-        template = cfg.getTemplate("controller.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"Controller.java";
-        writeFile(content, filePath);
-        logger.info("Controller: {}", filePath);
-
-        // 生成 ViewForm
-        template = cfg.getTemplate("viewForm.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("className")+"Form.jsp";
-        writeFile(content, filePath);
-        logger.info("ViewForm: {}", filePath);
-
-        // 生成 ViewList
-        template = cfg.getTemplate("viewList.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("className")+"List.jsp";
-        writeFile(content, filePath);
-        logger.info("ViewList: {}", filePath);
+        for (CtMethod method2 : method) {
+            methodName = method2.getName();
+            returnType = method2.getReturnType().getSimpleName();
+            
+            MethodInfo methodInfo = method2.getMethodInfo();
+            
+            CodeAttribute codeAttribute = methodInfo.getCodeAttribute();
+            LocalVariableAttribute attr = (LocalVariableAttribute) codeAttribute
+                    .getAttribute(LocalVariableAttribute.tag);
+            if (attr == null) {
+                // exception
+            }
+            String[] paramNames = new String[method2.getParameterTypes().length];
+            int pos = Modifier.isStatic(method2.getModifiers()) ? 0 : 1;
+            for (int i = 0; i < paramNames.length; i++) {
+                paramNames[i] = attr.variableName(i + pos);
+                System.out.println(attr.getName());
+                paramStr.append(paramNames[i]).append(", ");
+            }
+            
+            
+            
+            // paramNames即参数名
+            for (int i = 0; i < paramNames.length; i++) {
+                System.out.println(paramNames[i]);
+            }
+            
+//            for (Class class1 : paramTypes) {
+//                System.out.println(class1.getSimpleName());
+//                paramStr.append(class1.getSimpleName())
+//                .append(" ").append("param").append(",");
+//            }
+            // 生成 Method
+            Template template = cfg.getTemplate("orderMethod.ftl");
+            
+            
+            
+            
+            
+            model.put("methodName", methodName);
+            model.put("returnType", returnType);
+            model.put("comment", comment);
+            model.put("param", paramStr.toString());
+            String content = FreeMarkers.renderTemplate(template, model);
+            String filePath = outputPath + separator + model.get("ClassName")+".java";
+            
+            writeFile(content, filePath);
+        }
+        
+        
+        
         
         logger.info("Generate Success.");
     }

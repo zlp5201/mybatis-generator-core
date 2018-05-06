@@ -62,24 +62,4 @@ public interface ${ClassName}Service {
      * @since [产品/模块版本](可选)
      */
     Result<Boolean> close(${ClassName} record, String closeReason);
-    
-       
-   /**
-   * 功能描述:通过主键id查询订单详情
-   *
-   * @param orderInfo 支持id和orderNo
-   * @see [相关类/方法](可选)
-   * @since [产品/模块版本](可选)
-   */
-   Result<OrderBookingDetailInfoOutputDto> getDetailInfo(${ClassName} record);
-   
-   
-   /**
-     * 功能描述: 收款
-     *
-     * @param record 表对应实体类
-     * @see [相关类/方法](可选)
-     * @since [产品/模块版本](可选)
-     */
-    Result<Boolean> collection(CollectionInput record);
 }
