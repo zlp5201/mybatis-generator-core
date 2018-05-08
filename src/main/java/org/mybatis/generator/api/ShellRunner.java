@@ -49,7 +49,7 @@ public class ShellRunner {
     private static final String FORCE_JAVA_LOGGING = "-forceJavaLogging"; //$NON-NLS-1$
     private static final String HELP_1 = "-?"; //$NON-NLS-1$
     private static final String HELP_2 = "-h"; //$NON-NLS-1$
-
+    // -configfile D:\generator\mybatis-generator-core\src\main\java\com\xinguang\vly\order\generatorConfig.xml -overwrite
     public static void main(String[] args) {
         if (args.length == 0) {
             usage();

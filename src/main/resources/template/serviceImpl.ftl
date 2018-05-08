@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.StringUtils;
 import com.xinguang.vly.order.utils.JsonUtil;
 import org.springframework.stereotype.Service;
+import com.xinguang.vly.order.dto.CollectionInput;
+import com.xinguang.vly.core.exception.BizException;
 import ${packageName}.biz.${ClassName}Biz;
 import ${packageName}.model.${ClassName};
 import ${packageName}.api.${ClassName}Service;
@@ -37,16 +39,16 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public Result<Boolean> deleteByPrimaryKey(${ClassName} record) {
+    public Result<Boolean> delete${ClassName}ById(${ClassName} record) {
         try 
         {
             if (record == null || StringUtils.isEmpty(record.getId())) {
-                logger.error(moduleName, "deleteByPrimaryKey", "错误信息:入参不能为空");
+                logger.error(moduleName, "delete${ClassName}ById", "错误信息:入参不能为空");
                 return Result.fail("10002", "入参不能为空");
             }
         
-            logger.infoRpc(moduleName, "deleteByPrimaryKey", "入参{}", JsonUtil.toJson(record));
-            int iRet = ${className}Biz.deleteByPrimaryKey(record.getId());
+            logger.infoRpc(moduleName, "delete${ClassName}ById", "入参{}", JsonUtil.toJson(record));
+            int iRet = ${className}Biz.delete${ClassName}ById(record.getId());
             if (iRet > 0) 
             {
                 return Result.success();
@@ -55,7 +57,7 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
         } 
         catch (Exception e) 
         {
-            logger.errorRpc(moduleName, "deleteByPrimaryKey", "${ClassName}删除失败", e);
+            logger.errorRpc(moduleName, "delete${ClassName}ByById", "${ClassName}删除失败", e);
             return Result.fail("10002", "${ClassName}删除失败");
         }
     }
@@ -69,11 +71,11 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public Result<Boolean> insertSelective(${ClassName} record) {
+    public Result<Boolean> add${ClassName}(${ClassName} record) {
         try 
         {
-            logger.infoRpc(moduleName, "insertSelective", "入参{}", JsonUtil.toJson(record));
-            int iRet = ${className}Biz.insertSelective(record);
+            logger.infoRpc(moduleName, "add${ClassName}", "入参{}", JsonUtil.toJson(record));
+            int iRet = ${className}Biz.add${ClassName}(record);
             if (iRet > 0) 
             {
                 return Result.success();
@@ -82,7 +84,7 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
         } 
         catch (Exception e) 
         {
-            logger.errorRpc(moduleName, "insertSelective", "${ClassName}删除失败", e);
+            logger.errorRpc(moduleName, "add${ClassName}", "${ClassName}删除失败", e);
             return Result.fail("10001", "${ClassName}增加失败");
         }
     }
@@ -96,16 +98,16 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public Result<${ClassName}> selectByPrimaryKey(${ClassName} record) {
+    public Result<${ClassName}> query${ClassName}ById(${ClassName} record) {
         try 
         {   
             if (record == null || StringUtils.isEmpty(record.getId())) {
-                logger.error(moduleName, "selectByPrimaryKey", "错误信息:入参不能为空");
+                logger.error(moduleName, "query${ClassName}ById", "错误信息:入参不能为空");
                 return Result.fail("10004", "入参不能为空");
             }
             
-            logger.infoRpc(moduleName,"selectByPrimaryKey", "入参{}", JsonUtil.toJson(record));
-            ${ClassName} qryResult = ${className}Biz.selectByPrimaryKey(record.getId());
+            logger.infoRpc(moduleName,"query${ClassName}ById", "入参{}", JsonUtil.toJson(record));
+            ${ClassName} qryResult = ${className}Biz.query${ClassName}ById(record.getId());
             if (qryResult != null) 
             {
                 return Result.success(qryResult);
@@ -114,7 +116,7 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
         } 
         catch (Exception e) 
         {
-            logger.errorRpc(moduleName, "selectByPrimaryKey", "${ClassName}删除失败", e);
+            logger.errorRpc(moduleName, "query${ClassName}ById", "${ClassName}删除失败", e);
             return Result.fail("10004", "${ClassName}查询失败");
         }
     }
@@ -128,11 +130,11 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
      * @since [产品/模块版本](可选)
      */
     @Override
-    public Result<Boolean> updateByPrimaryKeySelective(${ClassName} record) {
+    public Result<Boolean> modify${ClassName}ById(${ClassName} record) {
         try 
         {
-            logger.debugRpc(moduleName,"updateByPrimaryKeySelective", "入参{}", JsonUtil.toJson(record));
-            int iRet = ${className}Biz.updateByPrimaryKeySelective(record);
+            logger.debugRpc(moduleName,"modify${ClassName}ById", "入参{}", JsonUtil.toJson(record));
+            int iRet = ${className}Biz.modify${ClassName}ById(record);
             if (iRet > 0) 
             {
                 return Result.success();
@@ -141,8 +143,37 @@ public class ${ClassName}ServiceImpl implements ${ClassName}Service {
         } 
         catch (Exception e) 
         {
-            logger.errorRpc(moduleName, "updateByPrimaryKeySelective", "${ClassName}删除失败", e);
+            logger.errorRpc(moduleName, "modify${ClassName}ById", "${ClassName}更新失败", e);
             return Result.fail("10003", "${ClassName}更新失败");
+        }
+    }
+    
+    
+    /**
+     * 功能描述: 订单关闭
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    @Override
+    public Result<Boolean> close(${ClassName} record, String closeReason) {
+        try 
+        {
+            logger.debugRpc(moduleName,"close", "入参{}", JsonUtil.toJson(record));
+            boolean isSucess = ${className}Biz.close(record, closeReason);
+            if (isSucess) 
+            {
+                return Result.success();
+            }
+            return Result.fail("10005", "${ClassName}关闭失败");
+        } catch (BizException e) {
+            return Result.failArgs(e.getCode(), e.getMessage());
+        }
+        catch (Exception e) 
+        {
+            logger.errorRpc(moduleName, "close", "${ClassName}关闭失败", e);
+            return Result.fail("10005", "${ClassName}关闭失败");
         }
     }
 }

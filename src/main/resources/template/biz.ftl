@@ -2,7 +2,8 @@
  * There are automatic code generation
  */
 package ${packageName}.biz;
-
+import com.xinguang.vly.order.dto.CollectionInput;
+import com.xinguang.vly.core.exception.BizException;
 import ${packageName}.model.${ClassName};
 
 /**
@@ -20,7 +21,7 @@ public interface ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-	int deleteByPrimaryKey(String id);
+	int delete${ClassName}ById(String id);
 
 
 	 /**
@@ -30,7 +31,7 @@ public interface ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    int insertSelective(${ClassName} record);
+    int add${ClassName}(${ClassName} record);
 	
 	
 	 /**
@@ -40,7 +41,7 @@ public interface ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    ${ClassName} selectByPrimaryKey(String id);
+    ${ClassName} query${ClassName}ById(String id);
 
 
 	 /**
@@ -50,5 +51,26 @@ public interface ${ClassName}Biz {
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    int updateByPrimaryKeySelective(${ClassName} record);
+    int modify${ClassName}ById(${ClassName} record);
+    
+        
+    
+    /**
+     * 功能描述: 订单关闭
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    Boolean close(OrderPaymentInfo record, String closeReason);
+    
+    
+    /**
+     * 功能描述: 收款
+     *
+     * @param record 表对应实体类
+     * @see [相关类/方法](可选)
+     * @since [产品/模块版本](可选)
+     */
+    Boolean collection(CollectionInput record) throws Exception;
 }

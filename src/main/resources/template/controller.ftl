@@ -34,12 +34,12 @@ import ${packageName}.biz.${ClassName}Biz;
 public class ${ClassName}Controller extends BaseController {
 
 	@Autowired
-	private ${ClassName}Biz ${className}Biz;
+	private ${ClassName}Service ${className}Service;
 	
 	@ModelAttribute
 	public ${ClassName} get(@RequestParam(required=false) String id) {
 		if (StringUtils.isNotBlank(id)){
-			return ${className}Biz.selectByPrimaryKey(id);
+			return ${className}Service.selectByPrimaryKey(id);
 		}else{
 			return new ${ClassName}();
 		}
