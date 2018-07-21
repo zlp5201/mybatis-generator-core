@@ -48,6 +48,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.UpdateByPrimar
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.XMLMapperGenerator;
 import org.mybatis.generator.config.PropertyRegistry;
 
+
 /**
  * @author Jeff Butler
  * 
@@ -97,12 +98,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         /**
          * 对未来域生成结构进行定制，生成的Mapper.java文件需要加入包和annotation
          */
-		FullyQualifiedJavaType repositoryType = new FullyQualifiedJavaType("org.springframework.stereotype.Repository");
-		FullyQualifiedJavaType myBatisType = new FullyQualifiedJavaType("com.xinguang.vly.core.annotation.MyBatisMapper");
+		FullyQualifiedJavaType repositoryType = new FullyQualifiedJavaType("org.springframework.stereotype.Component");
 		interfaze.addImportedType(repositoryType);
-		interfaze.addImportedType(myBatisType);
-        interfaze.addAnnotation("@MyBatisMapper");
-        interfaze.addAnnotation("@Repository");
+        interfaze.addAnnotation("@MyBatisDAO");
+        interfaze.addAnnotation("@Component");
         
         addCountByExampleMethod(interfaze);
         addDeleteByExampleMethod(interfaze);
