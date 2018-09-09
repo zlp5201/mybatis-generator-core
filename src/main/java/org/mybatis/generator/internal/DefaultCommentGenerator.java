@@ -109,6 +109,11 @@ public class DefaultCommentGenerator implements CommentGenerator {
         }
 
         xmlElement.addElement(new TextElement("-->")); //$NON-NLS-1$
+
+
+        // 增加安全风险提醒 zhangliping
+        xmlElement.addElement(new TextElement("<!--  鉴于越权风险漏洞，该方法update detele等方法请尽量不要对controller层披露 -->"));
+
     }
 
     /* (non-Javadoc)

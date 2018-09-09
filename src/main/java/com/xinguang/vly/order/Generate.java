@@ -45,13 +45,17 @@ public class Generate {
         
         
         // ========== ↓↓↓↓↓↓ 执行前请修改参数，谨慎执行。↓↓↓↓↓↓ ==================== 
-        String packageName = "com.xinguang.vly.bill";
-        String sysName = "企业账单记录表";
-        String moduleName = "BusinessAdvanceBill";            // 模块名，例：sys
+        String sysName = "賬戶流水日志";
+        String moduleName = "AccountFlowLog";            // 模块名，例：sys
+        
+        
+        
+        
+        String packageName = "com.ymm.key.customer";
         String subModuleName = "";            // 子模块名（可选） 
-        String className = "BusinessAdvanceBill";            // 类名，例：user
-        String classAuthor = "zhanglp";        // 类作者，例：Hzmux
-        String functionName = "企业账单记录表";            // 功能名，例：用户
+        String className = moduleName;            // 类名，例：user
+        String classAuthor = "liping.zhang";        // 类作者，例：Hzmux
+        String functionName = sysName;            // 功能名，例：用户
         // ========== ↑↑↑↑↑↑ 执行前请修改参数，谨慎执行。↑↑↑↑↑↑ ====================
         
         
@@ -136,23 +140,23 @@ public class Generate {
                 ?":"+StringUtils.lowerCase(subModuleName):"")+":"+model.get("className"));
 
         // 生成 Entity
-        Template template = cfg.getTemplate("entity.ftl");
+        Template template = null;
         
         
-        String content = FreeMarkers.renderTemplate(template, model);
-        String filePath = outputPath + separator + model.get("ClassName")+".java";
+        String content = "";
+        String filePath = "";
 //        
-        // 生成 biz
-        template = cfg.getTemplate("biz.ftl");
+        // 生成 Repository
+        template = cfg.getTemplate("repository.ftl");
         content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"Biz.java";
+        filePath =  outputPath + separator + model.get("ClassName")+"Repository.java";
         writeFile(content, filePath);
         logger.info("biz: {}", filePath);
         
-        // 生成 bizImpl
-        template = cfg.getTemplate("bizImpl.ftl");
+        // 生成 RepositoryImpl
+        template = cfg.getTemplate("repositoryImpl.ftl");
         content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"BizImpl.java";
+        filePath =  outputPath + separator + model.get("ClassName")+"RepositoryImpl.java";
         writeFile(content, filePath);
         logger.info("bizImpl: {}", filePath);
         
@@ -172,34 +176,7 @@ public class Generate {
         writeFile(content, filePath);
         logger.info("bizImpl: {}", filePath);
         
-        // 生成 junit
-        template = cfg.getTemplate("junit.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"ServiceTest.java";
-        writeFile(content, filePath);
-        logger.info("junit: {}", filePath);
-        
-        
-        // 生成 Controller
-        template = cfg.getTemplate("controller.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("ClassName")+"Controller.java";
-        writeFile(content, filePath);
-        logger.info("Controller: {}", filePath);
-
-        // 生成 ViewForm
-        template = cfg.getTemplate("viewForm.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("className")+"Form.jsp";
-        writeFile(content, filePath);
-        logger.info("ViewForm: {}", filePath);
-
-        // 生成 ViewList
-        template = cfg.getTemplate("viewList.ftl");
-        content = FreeMarkers.renderTemplate(template, model);
-        filePath =  outputPath + separator + model.get("className")+"List.jsp";
-        writeFile(content, filePath);
-        logger.info("ViewList: {}", filePath);
+      
         
         logger.info("Generate Success.");
     }

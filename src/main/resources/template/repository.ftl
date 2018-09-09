@@ -1,53 +1,53 @@
 /**
  * There are automatic code generation
  */
-package ${packageName}.api.service;
-
-import com.ymm.key.customer.api.dto.${ClassName}DTO;
+package com.ymm.key.customer.biz.repository;
+import com.ymm.key.customer.biz.entity.${ClassName}Entity;
 
 /**
- * ${sysName}服务提供层
+ * ${functionName}Repository
  * @author ${classAuthor}
  * @version ${classVersion}
  */
-public interface ${ClassName}Service {
-	
+public interface ${ClassName}Repository {
+
+
      /**
      * 功能描述: 通过主键删除
      *
-     * @param record 主键id包含的实体类
+     * @param id 主键id
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Boolean delete${ClassName}ById(${ClassName}DTO dto);
+	int delete${ClassName}ById(String id);
 
 
-     /**
+	 /**
      * 功能描述: 新增插入表
      *
      * @param record 表对应实体类
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Boolean add${ClassName}(${ClassName}DTO dto);
-
-    
-     /**
+    int add${ClassName}(${ClassName}Entity record);
+	
+	
+	 /**
      * 功能描述:通过主键id查询对象
      *
-     * @param record 主键id包含的实体类
+     * @param id 主键id
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    ${ClassName}DTO query${ClassName}ById(${ClassName}DTO dto);
+    ${ClassName}Entity query${ClassName}ById(String id);
 
 
-     /**
+	 /**
      * 功能描述: 表对应实体类
      *
      * @param record 表对应实体类
      * @see [相关类/方法](可选)
      * @since [产品/模块版本](可选)
      */
-    Boolean modify${ClassName}ById(${ClassName}DTO dto);
+    int modify${ClassName}ById(${ClassName}Entity record);
 }

@@ -163,7 +163,7 @@ public class Context extends PropertyHolder {
      */
     public JavaModelGeneratorConfiguration getJavaModelGeneratorConfiguration() {
         return javaModelGeneratorConfiguration;
-    }
+    } 
 
     /**
      * Gets the java type resolver configuration.

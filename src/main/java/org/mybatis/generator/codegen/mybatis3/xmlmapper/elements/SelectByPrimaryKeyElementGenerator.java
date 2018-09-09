@@ -108,7 +108,7 @@ public class SelectByPrimaryKeyElementGenerator extends
                     .getParameterClause(introspectedColumn));
             
             // zhangliping
-            sb.append(" and del_flag = 0");
+            sb.append(" and is_valid = 1");
             answer.addElement(new TextElement(sb.toString()));
         }
 

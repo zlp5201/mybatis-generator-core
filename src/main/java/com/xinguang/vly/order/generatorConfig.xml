@@ -2,233 +2,47 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
     <!-- 数据库驱动包位置 -->  
-   <classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar" />
+   <classPathEntry location="C:\Users\jxzlp\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar" />
     <!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->  
     <context id="DB2Tables" targetRuntime="MyBatis3">  
-        
-        
-        <!--生成的实体类序列化 -->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
-        <!-- 数据Model链式构建插件 -->
-        <!-- <plugin type="org.mybatis.generator.plugins.ModelBuilderPlugin"/> -->
-        <!-- 查询单条数据插件 -->
-        <plugin type="org.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
-        <!-- 查询单条数据插件 -->
-        <plugin type="org.mybatis.generator.plugins.SelectOneByOrderNoPlugin"/>
-        
-        <!--生成的实体类增加toString方法 -->
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        
-        <!-- Example 目标包修改插件 -->
-        <plugin type="org.mybatis.generator.plugins.ExampleTargetPlugin">
-            <!-- 修改Example类生成到目标包下 -->
-            <property name="targetPackage" value="com.xinguang.vly.order.model.example"/>
+         <!-- 查询单条数据插件 -->
+        <plugin type="org.mybatis.generator.plugins.RenameJavaMapperPlugin">
+            <property name="searchString" value="Repository"/>
+            <property name="replaceString" value="Dao"/>
         </plugin>
-        
+                
         <commentGenerator>  
             <property name="suppressAllComments" value="false" />  
             <property name="suppressDate" value="true" />  
             <property name="addRemarkComments" value="true" />  
         </commentGenerator>  
         <!-- 数据库链接URL、用户名、密码 -->  
-         
-         <!-- 
-           <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysqltest.ops.com:3306/futuredomain?characterEncoding=utf8" userId="futuredomain" password="CUJB13gNFN">   
-        </jdbcConnection>  
-         -->
-           <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://mysqldev.ops.com:3306/futuredomain?characterEncoding=utf8" userId="futuredomain" password="futuredomain_test">   
-        </jdbcConnection>  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/test" userId="root" password="123456">
+                  </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="true" />
         </javaTypeResolver>  
         <!-- 生成模型的包名和位置 -->  
-        <javaModelGenerator targetPackage="com.xinguang.vly.order.model" targetProject="D:\new\1.10.0\vly-order\vly-order-model\src\main\java">  
+        <javaModelGenerator targetPackage="com.ymm.key.customer.biz.entity" targetProject="D:\new">  
             <property name="enableSubPackages" value="true" />  
             <property name="trimStrings" value="true" />  
             <!--<property name="rootClass" value="com.xinguang.vly.model.BaseEntity"/> -->
         </javaModelGenerator>
 
         <!-- 生成的映射文件包名和位置 -->  
-        <sqlMapGenerator targetPackage="sqlmapper" targetProject="D:\new\1.10.0\vly-order\vly-order-data\src\main\resources">  
+        <sqlMapGenerator targetPackage="sqlmap" targetProject="D:\new">  
             <property name="enableSubPackages" value="true" />  
         </sqlMapGenerator>  
         
         <!-- 生成DAO的包名和位置  -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xinguang.vly.order.mapper" targetProject="D:\new\1.10.0\vly-order\vly-order-data\src\main\java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ymm.key.customer.biz.dao" targetProject="D:\new">  
             <property name="enableSubPackages" value="true" />  
         </javaClientGenerator>
         
         
         <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->  
-        <!-- 
-        
-        <table tableName="order_hi_task" domainObjectName="OrderHiTask"   enableCountByExample="false"  enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-        <table tableName="order_contact" domainObjectName="OrderContact" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >          
-                <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-
-        <table tableName="order_package_detail" domainObjectName="OrderPackageDetail" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >        
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-        
-        
-        <table tableName="order_contact" domainObjectName="OrderContact" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >          
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-          <table tableName="order_contract_info" domainObjectName="OrderContractInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-          <table tableName="contract_templete" domainObjectName="ContractTemplete" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-  
-        <table tableName="sys_city" domainObjectName="SysCity" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        <table tableName="res_store" domainObjectName="ResStore" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        <table tableName="order_bill_refund" domainObjectName="OrderBillRefund" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-        <table tableName="order_package_info" domainObjectName="OrderPackageInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-        <table tableName="csm_customer" domainObjectName="CsmCustomer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-
-        <table tableName="order_payment_plan_op" domainObjectName="OrderPaymentPlanOp" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-
-
-
-         <table tableName="order_contact_relation" domainObjectName="OrderContactRelation" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"> 
-             <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-
-        
-
-
-
-        <table tableName="order_checkout_info" domainObjectName="OrderCheckOutInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-        <table tableName="order_bill" domainObjectName="OrderBill" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"> 
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-
-       <table tableName="order_ru_status" domainObjectName="OrderRuStatus" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-      
-        <table tableName="order_res_room" domainObjectName="OrderResRoom" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-           <table tableName="order_relet_detail_info" domainObjectName="OrderReletDetailInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','') from dual" />
-        </table>
-
-         <table tableName="order_checkin_plan_op" domainObjectName="OrderCheckinPlanOp" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-        
-        <table tableName="order_goods_info" domainObjectName="OrderGoodsInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-         <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-
-
-
-        <table tableName="order_contract_info" domainObjectName="OrderContractInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-                
-        <table tableName="res_check_in" domainObjectName="ResCheckIn" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-           <table tableName="order_pay_info" domainObjectName="OrderPayInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-         <table tableName="order_info" domainObjectName="OrderInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-
-           <table tableName="order_checkout_fee_info" domainObjectName="OrderCheckoutFeeInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-
-             
-         <table tableName="business_retry_record" domainObjectName="BusinessRetryRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
-        </table>
-           
-        
-
-        <table tableName="order_checkin_info" domainObjectName="OrderCheckinInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
-        </table>
-          <table tableName="order_booking_info" domainObjectName="OrderBookingInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','')   from dual" />
-        </table>
-          <table tableName="temp_order_data_room" domainObjectName="TempOrderBookingInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','') from dual" />
-        </table>
-          <table tableName="temp_order_checkin_contact" domainObjectName="TempOrderCheckinContact" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')  from dual" />
-        </table>
-        
-
-         <table tableName="business_advance_bill" domainObjectName="BusinessAdvanceBill" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />  
-        </table>
-        <table tableName="order_payment_info" domainObjectName="OrderPaymentInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-                  <table tableName="temp_order_fix_info" domainObjectName="TempOrderFixInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
-            <generatedKey column="id" sqlStatement="MySql" identity="true" />  
-        </table>
-         <table tableName="order_info" domainObjectName="OrderInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','') from dual" />
-        </table>
-        <table tableName="order_booking_info" domainObjectName="OrderBookingInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-         <table tableName="order_payment_info" domainObjectName="OrderPaymentInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-        <table tableName="order_activity_info" domainObjectName="OrderActivityInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-          <table tableName="order_looking" domainObjectName="OrderLooking" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-        <table tableName="order_checkin_info" domainObjectName="OrderCheckinInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-           <table tableName="order_electric_info" domainObjectName="OrderElectricInfo" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select replace(uuid(),'-','') from dual" />
-        </table>
-        -->
-         <table tableName="order_contract_info" domainObjectName="OrderContractInfo" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" >
-            <generatedKey column="ID" sqlStatement="select  replace(uuid(),'-','')   from dual" />
+         <table tableName="violation_request_log" mapperName="ViolationRequestLogMapper" domainObjectName="ViolationRequestLogEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>  

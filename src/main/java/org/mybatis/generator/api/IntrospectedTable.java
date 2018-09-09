@@ -1448,7 +1448,7 @@ public abstract class IntrospectedTable {
 
     /**
      * Calculate my batis3 xml mapper file name.
-     *
+     * 生成xml文件名称
      * @return the string
      */
     protected String calculateMyBatis3XmlMapperFileName() {
